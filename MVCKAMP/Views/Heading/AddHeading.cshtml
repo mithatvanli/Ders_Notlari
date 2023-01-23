@@ -1,0 +1,29 @@
+﻿@model EntityLayer.concrete.Heading
+@{
+    ViewBag.Title = "AddHeading";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Başlık Ekle</h2>
+@using (Html.BeginForm("AddHeading", "Heading", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Başlık")
+        @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.HeadingName)
+        <br /><br />
+        @Html.Label("Kategori")
+       @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.vlc, new {@class="form-control"})  @*vlc conroller tarafında list için atanan nesnedir*@
+        <br /><br />
+        @Html.Label("Yazar Id")
+        @Html.TextBoxFor(x => x.WriterId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterId)
+       
+        <br /><br />
+        <button class="btn btn-info">Kaydet</button>
+        @Html.ActionLink("Başlıklar", "Index", "Heading", "", new { @class = "btn btn-dark" })
+
+
+    </div>
+    }
+
